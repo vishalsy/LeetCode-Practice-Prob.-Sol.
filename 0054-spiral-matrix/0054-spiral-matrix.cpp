@@ -30,7 +30,7 @@ public:
                 ans.push_back(matrix[i][l]);
             }
             l++;
-            if(l>r || t>d) break;
+            // if(l>r || t>d) break;
             // cout<<l<<" "<<r<<" "<<t<<" "<<d<<endl;
             
         }

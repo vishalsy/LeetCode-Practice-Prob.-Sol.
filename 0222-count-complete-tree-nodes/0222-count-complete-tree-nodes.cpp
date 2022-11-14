@@ -11,14 +11,15 @@
  */
 class Solution {
 public:
-    int ct(TreeNode* node){
+    void count(TreeNode* node,int &ct){
         if(node==NULL){
-            return 0;
+            return ;
         }
-        // ct++;
-         int l= ct(node->left);
-         int r= ct(node->right);
-        return l+r+1;
+        ct++;
+        cout<< ct<<" ";
+        count(node->left,ct);
+        count(node->right,ct);
+        
     }
     
     
@@ -28,6 +29,9 @@ public:
     
     int countNodes(TreeNode* root) {
        if(root==NULL) return 0;
-        return ct(root);
+        int ct=0;
+        count(root,ct);
+      cout<<ct;        
+        return ct;
     }
 };

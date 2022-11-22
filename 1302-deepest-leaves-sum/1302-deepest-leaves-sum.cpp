@@ -11,27 +11,40 @@
  */
 class Solution {
 public:
+    
+    void s(TreeNode* node,int &sum,int h,int k){
+        if(node==NULL ) return;
+        if(k==h){
+            sum+=node->val;
+            return;
+        } 
+        cout<<k<<" ";
+        s(node->left,sum,h,k+1);
+        s(node->right,sum,h,k+1);
+        k-=1;   
+    }
+    
+    
+    
+    
+    
+    
+    int he(TreeNode* root){
+        if(root==NULL) return 0;
+        
+        int l=he(root->left);
+        int r=he(root->right);
+        return 1+max(l,r);
+    }
+    
+ 
     int deepestLeavesSum(TreeNode* root) {
       
-        queue<TreeNode*>q;
-        q.push(root);
-        int sum;
-        while(!q.empty()){
-            int n=q.size();
-            sum=0;
-            
-            for(int i=0;i<n;i++){
-                
-                TreeNode* node=q.front();
-                q.pop();
-                if(node->left) q.push(node->left);
-                if(node->right) q.push(node->right);
-                sum+=node->val;
-                
-            }
-            
-        }
-      
+     int h=he(root);
+        // cout<<h;
+        int sum=0;
+        int k=1;
+        s(root,sum,h,k);
         return sum;
     }
 };

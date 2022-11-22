@@ -12,7 +12,7 @@
 class FindElements {
 public:
     void build(TreeNode* root){
-   
+         s.insert(root->val);
         if(root->left!=NULL){
             root->left->val=2*root->val+1;
            build(root->left);
@@ -23,28 +23,19 @@ public:
         }
         
     }
-     void get(TreeNode* root,vector<int>&ans){
-        if(root==NULL) return;
-        
-        get(root->left,ans);
-        ans.push_back(root->val);
-        get(root->right,ans);
-        
-    }
+    
 
-    vector<int>ans;
+    unordered_set<int>s;
     
     FindElements(TreeNode* root) {
         root->val=0;
         build(root);
-        get(root,ans);
+        
  
     }
     
     bool find(int target) {
-        for(int i=0;i<ans.size();i++){
-            if(ans[i]==target) return true;
-        }
+        if(s.find(target)!=s.end()) return true;
         return false;
     }
 };

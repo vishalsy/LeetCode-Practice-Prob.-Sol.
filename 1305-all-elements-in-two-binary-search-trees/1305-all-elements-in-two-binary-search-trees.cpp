@@ -14,34 +14,24 @@ public:
     
     
     
-    void get1(TreeNode* root1,vector<int>&ans1){
-        if(root1==NULL) return;
+    void get(TreeNode* root,vector<int>&ans){
+        if(root==NULL) return;
         
-        get1(root1->left,ans1);
-        ans1.push_back(root1->val);
-        get1(root1->right,ans1);
-        
-    }
-     void get2(TreeNode* root2,vector<int>&ans2){
-        if(root2==NULL) return;
-        
-        get1(root2->left,ans2);
-        ans2.push_back(root2->val);
-        get1(root2->right,ans2);
+        get(root->left,ans);
+        ans.push_back(root->val);
+        get(root->right,ans);
         
     }
-    
- 
+
+
     vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
-        vector<int>ans1,ans2;
-        get1(root1,ans1);
-        get2(root2,ans2);
+        vector<int>ans;
+        get(root1,ans);
+        get(root2,ans);
         
-        for(int i=0;i<ans2.size();i++){
-            ans1.push_back(ans2[i]);
-        }
-        sort(ans1.begin(),ans1.end());
-        return ans1;
+       
+        sort(ans.begin(),ans.end());
+        return ans;
 
     }
 };

@@ -33,7 +33,7 @@ class Solution {
               for(auto i:adj[node]){
                   int child=i.first;
                   int x=i.second;
-                  if(dist[child]>d+x){
+                  if(dist[child]>=d+x){
                       dist[child]=d+x;
                       pq.push({d+x,child});
                   }

@@ -26,7 +26,17 @@ class Solution {
   
     int minimizeCost(vector<int>& height, int n, int k) {
         vector<int>dp(n,-1);
-           return find(height,n-1,k,dp);
+        //   return find(height,n-1,k,dp);
+        dp[0]=0;
+        for(int i=1;i<n;i++){
+            int minima=INT_MAX;
+            
+            for(int j=1;j<=k;j++){
+                if(i-j>=0) minima=min(minima,dp[i-j]+abs(height[i]-height[i-j]));
+            }
+            dp[i]=minima;
+        }
+        return dp[n-1];
     }
 };
 

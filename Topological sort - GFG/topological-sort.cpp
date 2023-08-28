@@ -8,45 +8,29 @@ class Solution
 	public:
 	//Function to return list containing vertices in Topological order. 
 	vector<int> topoSort(int V, vector<int> adj[]) 
-	{   
-	    vector<int>ind(V,0);
+	{  
+	    vector<int>in(V,0);
+	    vector<int>ans;
 	    for(int i=0;i<V;i++){
-          for(auto x:adj[i]){
-              ind[x]++;
-            //   cout<<"a";
-          }
+	        for(auto x:adj[i]){
+    	            in[x]++;
+	        }
 	    }
-//          int ind[V] = {0};
-// 		for (int i = 0; i < V; i++)
-// 		{
-// 			for (auto it : adj[i]) 
-// 			{
-// 				ind[it]++;
-// 			}
-// 		}
-          queue<int>q;
-        //   for(auto x:ind){
-        //       cout<<x<<" ";
-        //   }
-          
-          for(int i=0;i<V;i++){
-              if(ind[i]==0) q.push(i);
-          }
-          vector<int>ans;
-          
-          while(!q.empty()){
-              int node=q.front();
-              q.pop();
-              ans.push_back(node);
-              for(auto x:adj[node]){
-                  ind[x]--;
-                  if(ind[x]==0) q.push(x);
-              }
-          }
-          return ans;
-   
-    }
-
+	    queue<int>q;
+	    for(int i=0;i<V;i++){
+	        if(in[i]==0) q.push(i);
+	    }
+	    while(!q.empty()){
+	        int node=q.front();
+	        q.pop();
+	        ans.push_back(node);
+	        for(auto i:adj[node]){
+	            in[i]--;
+	            if(in[i]==0) q.push(i);
+	        }
+	    }
+	    return ans;
+	}
 };
 
 //{ Driver Code Starts.
